@@ -2,19 +2,6 @@ int datapin = 2;
 int clockpin = 3;
 int latchpin = 4;
 
-byte digits[10] = {
-  0b11000000,  // 0
-  0b11111001,  // 1
-  0b10100100,  // 2
-  0b10110000,  // 3
-  0b10011001,  // 4
-  0b10010010,  // 5
-  0b10000010,  // 6
-  0b11011000,  // 7
-  0b10000000,  // 8
-  0b10011000   // 9
-};
-
 void setup()
 {
   pinMode(datapin, OUTPUT);
@@ -32,11 +19,24 @@ void loop()
 
 void displayNumber(int number)
 {
-    byte data = digits[number];
-    
-    shiftOut(datapin, clockpin, MSBFIRST, data);
-    digitalWrite(latchpin, HIGH);
-    digitalWrite(latchpin, LOW);
+  byte digits[10] = {
+    0b11000000,  // 0
+    0b11111001,  // 1
+    0b10100100,  // 2
+    0b10110000,  // 3
+    0b10011001,  // 4
+    0b10010010,  // 5
+    0b10000010,  // 6
+    0b11011000,  // 7
+    0b10000000,  // 8
+    0b10011000   // 9
+  };
+
+  byte data = digits[number];
+  
+  shiftOut(datapin, clockpin, MSBFIRST, data);
+  digitalWrite(latchpin, HIGH);
+  digitalWrite(latchpin, LOW);
 }
 
 //  for (int i=0; i<8; i++) shiftWrite(i, HIGH);
