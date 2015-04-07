@@ -1,0 +1,3 @@
+Test chip: STC89C52 
+Connection:DIO-P1.0  RCK-P1.1  SCK-P1.2  
+Digital tube  will display 4 3 2 1 when powered on 
