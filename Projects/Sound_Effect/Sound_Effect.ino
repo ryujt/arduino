@@ -99,6 +99,87 @@ const float  note_Db8 = 4434.92;  //C#8/Db8
 const float  note_D8 = 4698.64;  //D8
 const float  note_Eb8 = 4978.03;  //D#8/Eb8
 
+void setup() {
+	pinMode(0, OUTPUT);
+}
+
+void loop() {
+//	seR2D2(0);
+//	delay(1000);
+//
+//	seCloseEncounters(0);
+//	delay(1000);
+//
+//	seAriel(0);
+//	delay(1000);
+//
+//	seLaugh(0);
+//	delay(1000);
+//
+//	seLaugh2(0);
+//	delay(1000);
+//
+//	seSqueak(0);
+//	delay(1000);
+//
+//	seWaka(0);
+//	delay(1000);
+//
+//	seCatcall(0);
+//	delay(1000);
+//
+//	seOhhh(0);
+//	delay(1000);
+//
+//	seUhoh(0);
+//	delay(1000);
+//
+//	seChang(0);
+//	delay(1000);
+//
+//	seCoo(0);
+//	delay(1000);
+//
+//	seOh(0);
+//	delay(1000);
+//
+//	sePhone(0);
+//	delay(1000);
+//
+//	seSiren(0);
+//	delay(1000);
+//
+//	seSpace1(0);
+//	delay(1000);
+//
+//	seSpace2(0);
+//	delay(1000);
+//
+//	seFanfare(0);
+//	delay(1000);
+//
+	seAlarm(0);
+	delay(1000);
+//
+//	seTelefone(0);
+//	delay(1000);
+//
+//	seTonarkade(0);
+//	delay(1000);
+//
+//	seTonarkade2(0);
+//	delay(1000);
+//
+//	seSad(0);
+//	delay(1000);
+//
+//	seVictory(0);
+//	delay(1000);
+//
+//	seAssorted(0);
+//	delay(1000);
+}
+
 void beep(int speakerPin, float noteFrequency, long noteDuration) {
 	int x;
 	// Convert the frequency to microseconds
@@ -421,7 +502,7 @@ void seFanfare(int pinNo) {
 	}
 }
 
-void seLarm(int pinNo) {
+void seAlarm(int pinNo) {
 	int i, j;
 
 	for (j = 1; j < 10; j++) {
@@ -524,85 +605,4 @@ void seAssorted(int pinNo) {
 	beep(pinNo, 700, 275);
 	beep(pinNo, 800, 275);
 	beep(pinNo, 900, 110);
-}
-
-void setup() {
-	pinMode(0, OUTPUT);
-}
-
-void loop() {
-//	seR2D2(0);
-//	delay(1000);
-//
-//	seCloseEncounters(0);
-//	delay(1000);
-//
-//	seAriel(0);
-//	delay(1000);
-//
-//	seLaugh(0);
-//	delay(1000);
-//
-//	seLaugh2(0);
-//	delay(1000);
-//
-//	seSqueak(0);
-//	delay(1000);
-//
-//	seWaka(0);
-//	delay(1000);
-//
-//	seCatcall(0);
-//	delay(1000);
-//
-//	seOhhh(0);
-//	delay(1000);
-//
-//	seUhoh(0);
-//	delay(1000);
-//
-//	seChang(0);
-//	delay(1000);
-//
-//	seCoo(0);
-//	delay(1000);
-//
-//	seOh(0);
-//	delay(1000);
-//
-//	sePhone(0);
-//	delay(1000);
-//
-	seSiren(0);
-	delay(1000);
-
-//	seSpace1(0);
-//	delay(1000);
-//
-//	seSpace2(0);
-//	delay(1000);
-
-	seFanfare(0);
-	delay(1000);
-
-	seLarm(0);
-	delay(1000);
-
-//	seTelefone(0);
-//	delay(1000);
-//
-//	seTonarkade(0);
-//	delay(1000);
-//
-//	seTonarkade2(0);
-//	delay(1000);
-//
-//	seSad(0);
-//	delay(1000);
-//
-//	seVictory(0);
-//	delay(1000);
-//
-	seAssorted(0);
-	delay(1000);
 }
