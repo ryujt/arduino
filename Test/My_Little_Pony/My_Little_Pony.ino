@@ -103,7 +103,7 @@
 
 float duration = 2000;
 
-int melody[] = {
+const int melody[] PROGMEM = {
   NOTE_FS5, NOTE_A5, NOTE_FS5, NOTE_E5, NOTE_A5,
   NOTE_D5, NOTE_E5, NOTE_D5, NOTE_CS5, NOTE_A4,
   NOTE_B4, NOTE_CS5, NOTE_D5, NOTE_E5,
@@ -119,7 +119,7 @@ int melody[] = {
   NOTE_FS5, NOTE_D5, NOTE_G5, NOTE_FS5, NOTE_E5, 0, NOTE_D5, NOTE_FS5, NOTE_E5, NOTE_D5
 };
 
-float noteDurations[] = {
+const float noteDurations[] PROGMEM = {
   EIGTH, EIGTH, EIGTH, QUARTER, QUARTER_DOT, 
   EIGTH, EIGTH, EIGTH, QUARTER, QUARTER_DOT, 
   QUARTER, QUARTER, QUARTER, QUARTER,
@@ -136,7 +136,7 @@ float noteDurations[] = {
   QUARTER
 };
 
-int pinSpeaker = 8;
+int pinSpeaker = 4;
 
 void setup() 
 {
@@ -145,11 +145,23 @@ void setup()
 
 void loop() 
 {
+  play_music();
+}
+
+void play_music()
+{
   for (int thisNote = 0; thisNote < 116; thisNote++) {
-    int noteDuration = duration*noteDurations[thisNote];
-    tone(pinSpeaker, melody[thisNote],noteDuration);
-    int pauseBetweenNotes = noteDuration * 1.30;
+    float d = pgm_read_float_near(&noteDurations[thisNote]);
+    int noteDuration = duration * d;
+    
+    int note = pgm_read_word_near(&melody[thisNote]);
+    tone(pinSpeaker, note, noteDuration);
+    
+    int pauseBetweenNotes = noteDuration * 1.30;    
     delay(pauseBetweenNotes);
+   
     noTone(pinSpeaker);
   }
 }
+
+
