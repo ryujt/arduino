@@ -1,7 +1,4 @@
-/*************************************************
- * Public Constants
- *************************************************/
-
+// 음 높이에 대한 주파수 
 #define NOTE_B0  31
 #define NOTE_C1  33
 #define NOTE_CS1 35
@@ -92,6 +89,7 @@
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
+// 음 길이
 #define WHOLE 1.0
 #define HALF 0.5
 #define HALF_DOT 0.75
@@ -101,8 +99,10 @@
 #define EIGTH_DOT 0.1875
 #define SIXTEENTH 0.0625
 
+// 연주 속도
 float duration = 2000;
 
+// My little pony 주제가 음표
 const int melody[] PROGMEM = {
   NOTE_FS5, NOTE_A5, NOTE_FS5, NOTE_E5, NOTE_A5,
   NOTE_D5, NOTE_E5, NOTE_D5, NOTE_CS5, NOTE_A4,
@@ -119,6 +119,7 @@ const int melody[] PROGMEM = {
   NOTE_FS5, NOTE_D5, NOTE_G5, NOTE_FS5, NOTE_E5, 0, NOTE_D5, NOTE_FS5, NOTE_E5, NOTE_D5
 };
 
+// My little pony 주제가 음 길이
 const float noteDurations[] PROGMEM = {
   EIGTH, EIGTH, EIGTH, QUARTER, QUARTER_DOT, 
   EIGTH, EIGTH, EIGTH, QUARTER, QUARTER_DOT, 
@@ -151,15 +152,26 @@ void loop()
 void play_music()
 {
   for (int thisNote = 0; thisNote < 116; thisNote++) {
+    // 지금 연주 할 음표의 음 길이를 읽어 옵니다.  (PROGMEM을 사용한 경우에는 배열을 바로 읽어 올 수 없습니다)
     float d = pgm_read_float_near(&noteDurations[thisNote]);
+
+    // 일어 온 음 길이에 연주 속도를 곱해서 사용합니다.  
+    // 연주 속도를 바꾸고 싶으면 103번 라인의 duration 값을 변경하면 됩니다.
     int noteDuration = duration * d;
     
+    // 지금 연주 할 음표를 구해 옵니다.
     int note = pgm_read_word_near(&melody[thisNote]);
+
+    // 구해 온 음표와 음 길이를 연주합니다.
     tone(pinSpeaker, note, noteDuration);
     
+    // 연주가 되는 동안 기다립니다.  
+    // 연주 시간보다 조금 더(1.3배) 기다려서 음 간격 확실하게 합니다.  
+    // 예를 들어 1박짜리 음표 두 개를 그냥 이어서 연주하면 2박짜리 음표 하나처럼 들리게 됩니다.
     int pauseBetweenNotes = noteDuration * 1.30;    
     delay(pauseBetweenNotes);
    
+    // 소리 재생을 멈춥니다.
     noTone(pinSpeaker);
   }
 }
