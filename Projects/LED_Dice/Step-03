@@ -1,0 +1,28 @@
+int pinData = 2; 
+int pinClock = 3;
+int pinLatch = 4;
+
+
+void setup() {
+  pinMode(pinData, OUTPUT);
+  pinMode(pinClock, OUTPUT);  
+  pinMode(pinLatch, OUTPUT);
+}
+
+byte data = 0b10000000;
+
+void loop() {
+  writeShift( data );  
+  delay( 500 );
+  
+  data = data >> 1;
+  
+  if (data == 0) data = 0b10000000;  
+}
+
+void writeShift(byte data)
+{
+  shiftOut( pinData, pinClock, MSBFIRST, data );
+  digitalWrite( pinLatch, HIGH );
+  digitalWrite( pinLatch, LOW );
+}

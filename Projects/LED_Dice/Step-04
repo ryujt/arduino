@@ -1,0 +1,30 @@
+int pinData = 2; 
+int pinClock = 3;
+int pinLatch = 4;
+
+
+void setup() {
+  pinMode(pinData, OUTPUT);
+  pinMode(pinClock, OUTPUT);  
+  pinMode(pinLatch, OUTPUT);
+}
+
+byte data = 0b10000000;
+
+int delay_count = 1000;
+
+void loop() {
+  // Dice display test
+  writeShift( 0b00011110 );  delay( delay_count );
+  writeShift( 0b00010111 );  delay( delay_count );
+  writeShift( 0b00101011 );  delay( delay_count );
+  
+  delay_count = delay_count / 2;
+}
+
+void writeShift(byte data)
+{
+  shiftOut( pinData, pinClock, MSBFIRST, data );
+  digitalWrite( pinLatch, HIGH );
+  digitalWrite( pinLatch, LOW );
+}
