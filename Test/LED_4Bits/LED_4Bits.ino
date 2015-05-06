@@ -5,7 +5,7 @@ unsigned char LED_BCD[16] =
 
 int data = 2;  
 int rck  = 3;
-int sck  = 5;
+int sck  = 4;
 
 void setup() {               
   pinMode( data, OUTPUT );
@@ -15,6 +15,18 @@ void setup() {
 
 void loop() {
   for(byte i=0; i<4; ++i) display_number(i, i, 0);
+}
+
+void display_integer(int value)
+{
+  int p = 1000;
+  
+  for (int i=3; i>=0; i--) {
+    int d = value / p;
+    p = p / 10;
+    display_number( i, d, 0 );
+    value = value - d * 1000;
+  }
 }
 
 void display_number(byte no, byte value, byte set_dp_on)
