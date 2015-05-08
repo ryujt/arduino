@@ -1,8 +1,7 @@
+#include <ESP8266.h>
 #include <SoftwareSerial.h>
 
-#include "ESP8266.h"
-
-SoftwareSerial esp8266Serial = SoftwareSerial(10, 11);
+SoftwareSerial esp8266Serial = SoftwareSerial(2, 3);
 ESP8266 wifi = ESP8266(esp8266Serial);
 
 void setup()
@@ -45,6 +44,7 @@ void setup()
     /****************************************/
     // setWifiMode
     Serial.print("setWifiMode: ");
+//    Serial.println(getStatus(wifi.setMode(ESP8266_WIFI_STATION)));
     Serial.println(getStatus(wifi.setMode(ESP8266_WIFI_ACCESSPOINT)));
 
     // getWifiMode
@@ -53,8 +53,8 @@ void setup()
     Serial.println(getStatus(wifi.getMode(&mode)));*/
 
     // joinAP
-    /*Serial.print("joinAP: ");
-    Serial.println(getStatus(wifi.joinAP("ssid", "password")));*/
+//    Serial.print("joinAP: ");
+//    Serial.println(getStatus(wifi.joinAP("ssid", "pw")));
 
     // getAP
     /*char ap[32] = {};
