@@ -1,0 +1,20 @@
+555: e18(1) - f21(5)
+
+Jumper: a18 - Gnd
+Jumper: j18 - Vcc
+Jumper(Wire): d19 - g20
+Jumper: d20 - d22
+Jumper: a21 - Vcc
+Jumper: e22 - f22
+Jumper: i20 - i23
+Jumper: c22 - c24
+Jumper: j25 - Gnd
+
+R 68K: h19 - h23
+
+C 2.2uF: f23 - f24(+)
+C 2.2uF: g24(+) - g25
+
+Inductor (10mH): j22 - j23
+
+Buzzer: a24 - Gnd
