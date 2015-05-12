@@ -7,6 +7,8 @@ byte speed = 255;
 
 void setup() 
 {
+  Serial.begin(9600);
+  
   pinMode(AIA, OUTPUT);
   pinMode(AIB, OUTPUT);
   pinMode(BIA, OUTPUT);
