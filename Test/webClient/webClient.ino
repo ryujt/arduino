@@ -12,7 +12,7 @@ static uint32_t timer;
 // called when the client request is complete
 static void my_callback (byte status, word off, word len) {
   Serial.println(">>>");
-  Ethernet::buffer[off+300] = 0;
+//  Ethernet::buffer[len- off] = 0;
   Serial.print((const char*) Ethernet::buffer + off);
   Serial.println("...");
 }
@@ -31,7 +31,7 @@ void setup ()
   ether.printIp("GW:  ", ether.gwip);  
   ether.printIp("DNS: ", ether.dnsip);  
 
-  ether.parseIp(ether.hisip, "192.168.10.1");
+  ether.parseIp(ether.hisip, "182.252.178.43");
   ether.printIp("SRV: ", ether.hisip);
 }
 
@@ -43,6 +43,6 @@ void loop ()
     timer = millis() + 5000;
     Serial.println();
     Serial.print("<<< REQ ");
-    ether.browseUrl(PSTR("/"), "", "192.168.10.1", my_callback);
+    ether.browseUrl(PSTR("/weather/set_data"), "?t=1", "www.helloworld.or.kr", my_callback);
   }
 }
