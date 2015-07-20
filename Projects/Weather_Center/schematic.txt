@@ -1,0 +1,40 @@
+Power
+	A12 (Arduino.5V)  --> (+)
+	A14 (Arduino.GND) --> (-)
+
+
+LCD
+	GND --> (-)
+	VCC --> (+)
+	SDA -->	a8 (Arduino.A4)
+	SCL --> a9 (Arduino.A5)
+
+
+온습도 센서: C27, C28, C29, C30 (앞면이 왼쪽을 바라보도록)
+
+
+저항 (4.7K): a28, (+)
+
+
+점퍼 선
+	a27 --> (+)
+	a30 --> (-)
+	e28 --> j10 (Arduino.D3)
+
+
+먼지 센서	
+	(윗쪽에서 부터)
+	1번 핀 --> (-)
+	2번 핀 --> (+)
+	3번 핀 --> j8 (Arduino.D5)
+	4번 핀 --> a4 (Arduino.A0)
+
+
+Ethernet	
+	VCC --> (+)
+	GND --> (-)	
+	SO  --> j1 (Arduino.D12)
+	SI  --> j2 (Arduino.D11)
+	CS  --> j5 (Arduino.D8)
+	SCK --> a1 (Arduino.D13)
+
