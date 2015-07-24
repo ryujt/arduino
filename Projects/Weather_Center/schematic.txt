@@ -38,3 +38,6 @@ Ethernet
 	CS  --> j5 (Arduino.D8)
 	SCK --> a1 (Arduino.D13)
 
+ 저항 (7.5K): i6 --> (-)
+ 	이 저항이 설치되지 않으면 Ethernet은 실제로 동작하지 않게 됩니다.
+
