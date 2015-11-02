@@ -11,13 +11,23 @@ int heatInterval = 255;
 char printDensity = 15; 
 char printBreakTime = 15;
 
+uint8_t pLine[256];
+
 void setup() {
   Thermal.begin(9600);
   printer.begin(); 
   
+////  memset(pLine, 0xFF, sizeof(pLine)); 
+//  memset(pLine, 0xAA, sizeof(pLine)); 
+//  
+//  for (int i=0; i<32; i++) 
+//  printer.printBitmap(480, 1, (uint8_t *) pLine, false);
+//  
+//  return;
+  
   // Test inverse on & off
   printer.inverseOn();
-  printer.println(F("Inverse ON"));
+  printer.println(F("123456789"));
   printer.inverseOff();
 
   // Test character double-height on & off
@@ -71,10 +81,10 @@ void setup() {
   printer.println(F("Adafruit!"));
   printer.feed(2);
   
-  printer.sleep();      // Tell printer to sleep
-  delay(3000L);         // Sleep for 3 seconds
-  printer.wake();       // MUST wake() before printing again, even if reset
-  printer.setDefault(); // Restore printer to defaults
+//  printer.sleep();      // Tell printer to sleep
+//  delay(3000L);         // Sleep for 3 seconds
+//  printer.wake();       // MUST wake() before printing again, even if reset
+//  printer.setDefault(); // Restore printer to defaults
 }
 
 void initPrinter() {

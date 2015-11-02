@@ -153,9 +153,9 @@ void setup()
     /*Serial.print("close: ");
     Serial.println(getStatus(wifi.close()));*/
 
-    // setMultipleConnections
-    Serial.print("setMultipleConnections: ");
-    Serial.println(getStatus(wifi.setMultipleConnections(true)));
+//    // setMultipleConnections
+//    Serial.print("setMultipleConnections: ");
+//    Serial.println(getStatus(wifi.setMultipleConnections(true)));
 
     // getMultipleConnections
     /*bool multipleConnections;
@@ -164,13 +164,13 @@ void setup()
     Serial.print(" : ");
     Serial.println(multipleConnections);*/
 
-    // createServer
-    Serial.print("createServer: ");
-    Serial.println(getStatus(wifi.createServer(4000)));
-
-    // deleteServer
-    Serial.print("deleteServer: ");
-    Serial.println(getStatus(wifi.deleteServer()));
+//    // createServer
+//    Serial.print("createServer: ");
+//    Serial.println(getStatus(wifi.createServer(4000)));
+//
+//    // deleteServer
+//    Serial.print("deleteServer: ");
+//    Serial.println(getStatus(wifi.deleteServer()));
 
     // setServerTimeout
     /*Serial.print("setServerTimeout: ");

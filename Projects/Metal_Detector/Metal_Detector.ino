@@ -40,6 +40,9 @@ void loop()
     value = pulse_count;
     pulse_count = 0;
 
+    Serial.print( "pulse_count:\t" );
+    Serial.println( value, DEC) ;    
+
     value = value * term / interval;
 
     term = 0;

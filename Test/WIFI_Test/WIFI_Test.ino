@@ -2,11 +2,11 @@
 
 #include "ESP8266.h"
 
-#define SSID "Ryu"
-#define PASS "babypig658"
+#define SSID "ollehEgg_479"
+#define PASS "info88479"
 #define DST_IP "125.209.222.141" 
 
-SoftwareSerial esp8266Serial = SoftwareSerial(10, 11);
+SoftwareSerial esp8266Serial = SoftwareSerial(2, 3);
 ESP8266 wifi = ESP8266(esp8266Serial);
 
 void setup()
@@ -18,36 +18,21 @@ void setup()
     wifi.begin();
     wifi.setTimeout(1000);
 
-    /****************************************/
-    /******       Basic commands       ******/
-    /****************************************/
-    // test
     Serial.print("test: ");
     Serial.println(getStatus(wifi.test()));
 
-    // restart
     Serial.print("restart: ");
     Serial.println(getStatus(wifi.restart()));
 
-    // getVersion
     char version[16] = {};
     Serial.print("getVersion: ");
     Serial.print(getStatus(wifi.getVersion(version, 16)));
     Serial.print(" : ");
     Serial.println(version);
 
-
-    /****************************************/
-    /******        WiFi commands       ******/
-    /****************************************/
-    // joinAP
     Serial.print("joinAP: ");
     Serial.println(getStatus(wifi.joinAP(SSID, PASS)));
 
-
-    /****************************************/
-    /******       TCP/IP commands      ******/
-    /****************************************/
     // connect
     Serial.print("connect: ");
     Serial.println(getStatus(wifi.connect(ESP8266_PROTOCOL_TCP, DST_IP, 80)));
@@ -55,7 +40,6 @@ void setup()
     // send
     Serial.print("send: ");
     Serial.println(getStatus(wifi.send("GET / HTTP/1.0\r\n\r\n")));
-
 }
 
 void loop()
