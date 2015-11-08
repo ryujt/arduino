@@ -1,29 +1,29 @@
-Jumper: e17 - f17
-Jumper: i16 - i20
-Jumper: Vcc - j18
-Jumper: e19 - e22
-Jumper: g19 - g29
-Jumper: Vcc - j21
-Jumper: Gnd - a23
-Jumper: e29 f29
+Jumper: i17 - i21
+Jumper: e18 - f18
+Jumper: Vcc - j19
+Jumper: e20 - e23
+Jumper: g20 - g27
+Jumper: Vcc - j22
+Jumper: Gnd - a24
+Jumper: e30 - f30
 
 C 104: Vcc - Gnd
-C 104: h16 - h18
-C 222: Vcc - a17
-C 222: c18 - c20
+C 104: h17 - h19
+C 222: Vcc - a18
+C 222: c19 - c21
 
-C 100uF: Vcc - j19
+C 100uF: Vcc - j20
 
-R 220K: Vcc - a18
-R  22K: Gnd - j16
-VR 100R: b22 - b24 - d23
+R 220K: Vcc - a19
+R  22K: Gnd - j17
+VR 100R: b23 - b25 - d24
 
-Tr 9018: b17 - b18 - b19 (]
-Tr 9015: g16 - g17 - g18 (]
-Tr 9012: h19 - h20 - h21 (]
+Tr 9018: b18 - b19 - b20 (]
+Tr 9015: g17 - g18 - g19 (]
+Tr 9012: h20 - h21 - h22 (]
 
-LED: Gnd - j29
+LED: Gnd - j27
 
-Buzzer: Gnd - b29
+Buzzer: Gnd - b27
 
-Coil: Vcc - a20 - c17
+Coil: Vcc - a21 - c18
