@@ -1,0 +1,21 @@
+Jumper: a18 - Vcc
+Jumper: e18 - f18
+Jumper: d20 - d24
+Jumper: e22 - f19
+Jumper: e24 - f24
+Jumper: a27 - Gnd
+Jumper: e27 - f27
+Jumper: g24 - Arduino.A5
+
+R  1K: c18 - c23
+R  1K: b23 - b27
+R 10K: c24 - c27
+
+C104: d18 - e20
+C104: b20 - b22
+
+Tr 2n2222: a22(c) - a23(b) - a24(e)
+
+Inductor (10mH): j18 - j19
+
+Buzzer: j24 - j27
