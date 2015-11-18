@@ -26,4 +26,5 @@ LED: Gnd - j27
 
 Buzzer: Gnd - b27
 
-Coil: Vcc - a21 - c18
+Coil 1: Vcc - c18
+Coil 2: Vcc - a21
