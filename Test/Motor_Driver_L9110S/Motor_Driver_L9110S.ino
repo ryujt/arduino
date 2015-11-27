@@ -1,7 +1,7 @@
-const int AIA = 5;  
-const int AIB = 4; 
-const int BIA = 3;
-const int BIB = 2;
+const int AIA = 6;  
+const int AIB = 5; 
+const int BIA = 4;
+const int BIB = 3;
 
 byte speed = 255;
 
