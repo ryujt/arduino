@@ -1,19 +1,15 @@
-#include <IRremote.h>
-
-IRrecv irrecv(7);
+#include "ir_utils.h"
 
 void setup()
 {
   Serial.begin(9600);
-  irrecv.enableIRIn();
+  start_ir(7);
 }
 
 void loop()
 {
-  decode_results results;
-  boolean has_result = irrecv.decode(&results);
-  if (has_result) {
-    Serial.println(results.value);
-    irrecv.resume();
+  unsigned long result = get_ir_code();
+  if (result != 0) {
+    Serial.println(result);
   }
 }

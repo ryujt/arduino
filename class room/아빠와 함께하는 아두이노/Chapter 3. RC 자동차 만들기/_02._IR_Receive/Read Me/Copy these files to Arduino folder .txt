@@ -1,0 +1,4 @@
+Copy *.h and *.cpp to following folder.
+(to the folder that you've installed Arduino)
+
+	C:\Program Files (x86)\Arduino\libraries\RobotIRremote\src
