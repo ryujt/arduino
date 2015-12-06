@@ -12,7 +12,7 @@ void loop() {
 
   Serial.println(brightness);
 
-  if (brightness < 100) {
+  if (brightness < 800) {
     digitalWrite(pin_led, HIGH);
   } else {
     digitalWrite(pin_led, LOW);
