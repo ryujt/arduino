@@ -9,6 +9,11 @@ void setup()
 
 void loop() 
 {
+//    light_up(1); 
+//    light_up(3); 
+//    light_up(5); 
+//    light_up(7); 
+    
   int v = 0;
   for (int i=1; i < 12; i++) {
     light_up(i); 
@@ -25,6 +30,11 @@ void loop()
 
 void ch_flex(int mode1, int mode2, int mode3, int mode4, int w1, int w2, int w3, int w4)
 {
+  digitalWrite(pin_1, LOW);
+  digitalWrite(pin_2, LOW);
+  digitalWrite(pin_3, LOW);
+  digitalWrite(pin_4, LOW);
+
   pinMode(pin_1, mode1);
   pinMode(pin_2, mode2);
   pinMode(pin_3, mode3);
