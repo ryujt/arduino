@@ -1,6 +1,11 @@
 /**
-  * Demo: https://youtu.be/IxBvCldOfcI
+  * Demo: https://youtu.be/rMxfbnTxB24
+  * 서보 모터 위치
+      0번부터 7번까지 8개의 서보 모터의 위치
+        4, 0   /\   1, 5
+        6, 2   \/   3, 7
 **/
+
 #include <Servo.h> 
 
 #define servo_count 8
@@ -9,7 +14,7 @@
 Servo servos[servo_count];
 
 int start_pos[servo_count] = {
-   90,   90,   90,  90,
+   90,  90,  90,  90,
    40, 150, 155,  40
 };
 
