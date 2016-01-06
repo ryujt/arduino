@@ -1,29 +1,34 @@
 #include <Servo.h> 
  
-int servoPin = 2;
-
-Servo servo; 
-
-int angle = 0; 
+Servo servo2; 
+Servo servo3; 
+Servo servo4; 
 
 void setup() 
 { 
-    Serial.begin(9600);
-    servo.attach(servoPin); 
-    servo.write(angle); 
+  servo2.attach(2); 
+  servo2.write(30);
+
+  servo3.attach(3); 
+  servo3.write(30);
+
+  servo4.attach(4); 
+  servo4.write(30); 
 } 
 
 
 void loop() 
 { 
-  for(angle = 0; angle < 180; angle++) 
-  { 
-    servo.write(angle); 
-    delay(15); 
-  } 
-  for(angle = 180; angle > 0; angle--) 
-  { 
-    servo.write(angle); 
-    delay(15); 
-  } 
+  for (int i=0; i<=30; i++) {
+    servo2.write(i); 
+    servo3.write(i); 
+    servo4.write(i*9); 
+    delay(50);
+  }
+  for (int i=30; i>0; i--) {
+    servo2.write(i); 
+    servo3.write(i); 
+    servo4.write(i*9); 
+    delay(50);
+  }
 } 
