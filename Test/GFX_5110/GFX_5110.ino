@@ -47,7 +47,7 @@ int get_y(int no, int d) {
 
 void draw_radar() {
     lcd.clearDisplay();
-    for (int i=1; i<8; i++) lcd.drawCircle(42, 48, i*5, BLACK);
+    for (int i=1; i<10; i++) lcd.drawCircle(42, 48, i*5, BLACK);
     for (int i=0; i<19; i++) lcd.fillCircle(get_x(i, distances[i]), get_y(i, distances[i]), 2, BLACK);
     lcd.display();
 }

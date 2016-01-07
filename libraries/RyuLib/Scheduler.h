@@ -1,3 +1,8 @@
+#ifndef SCHEDULER_H
+#define SCHEDULER_H
+
+#include <Arduino.h>
+
 class Listener {
 
 protected:
@@ -22,3 +27,5 @@ public:
   //   _listener->execute();
   // }
 };
+
+#endif // SCHEDULER_H
