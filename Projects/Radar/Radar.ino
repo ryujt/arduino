@@ -17,7 +17,8 @@ int distances[19];
 void setup() {
   Serial.begin(9600);
   
-  memset(&distances[0], 0, sizeof(distances));
+//  memset(&distances[0], 0, sizeof(distances));
+  for (int i=0; i<19; i++) distances[i] = 0;
   
   lcd.begin();
   lcd.setContrast(50);
@@ -31,44 +32,12 @@ void setup() {
 
 void loop() {
   for (int i=0; i<19; i++) {    
-    int angle = i * 10;
-
-    servo.write(angle);
-    
-    long duration, cm;
-    digitalWrite(pin_trig, HIGH); 
-    delay(10); 
-    digitalWrite(pin_trig, LOW);
-
-    duration = pulseIn(pin_echo, HIGH); 
-    cm = microsecondsToCentimeters(duration); 
-
-    Serial.println(cm);
-
-    distances[i] = cm ;
-    draw_radar();
-  
+    draw_radar(i);
     delay(250);
   }
 
   for (int i=(19-1); i>=0; i--) {
-    int angle = i * 10;
-
-    servo.write(angle);
-    
-    long duration, cm;
-    digitalWrite(pin_trig, HIGH); 
-    delay(10); 
-    digitalWrite(pin_trig, LOW);
-
-    duration = pulseIn(pin_echo, HIGH); 
-    cm = microsecondsToCentimeters(duration); 
-
-    Serial.println(cm);
-
-    distances[i] = cm ;
-    draw_radar();
-    
+    draw_radar(i);
     delay(250);
   }
 }
@@ -83,19 +52,24 @@ int get_y(int no, int d) {
   else return -100;
 }
 
-void draw_radar() {
-    lcd.clearDisplay();
-    for (int i=1; i<10; i++) lcd.drawCircle(42, 48, i*5, BLACK);
-    for (int i=0; i<19; i++) lcd.fillCircle(get_x(i, distances[i]), get_y(i, distances[i]), 2, BLACK);
-    lcd.display();
-}
+void draw_radar(int no) {
+  int angle = no * 10;
+  
+  servo.write(angle);
+  
+  digitalWrite(pin_trig, HIGH); 
+  delay(10); 
+  digitalWrite(pin_trig, LOW);
 
-long microsecondsToInches(long microseconds)
-{
-  return microseconds / 74 / 2;
-}
+  long duration = pulseIn(pin_echo, HIGH); 
+  long cm = duration / 29 / 2; 
 
-long microsecondsToCentimeters(long microseconds)
-{
-  return microseconds / 29 / 2;
+  Serial.println(cm);
+
+  distances[no] = cm ;
+
+  lcd.clearDisplay();
+  for (int i=1; i<10; i++) lcd.drawCircle(42, 48, i*5, BLACK);
+  for (int i=0; i<19; i++) lcd.fillCircle(get_x(i, distances[i]), get_y(i, distances[i]), 2, BLACK);
+  lcd.display();
 }
