@@ -20,8 +20,6 @@ void setup() {
   
   memset(&distances[0], 0, sizeof(distances));
   
-  srand(analogRead(0));
-
   lcd.begin();
   lcd.setContrast(50);
   lcd.clearDisplay();
