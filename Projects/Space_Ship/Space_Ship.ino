@@ -42,7 +42,7 @@ void loop() {
     if (rocks_pos[i] >= 52) rocks_pos[i] = -99;
     if (rocks_pos[i] != -99) rocks_pos[i] ++;
 
-    if (rocks_pos[i] > 44) check_collision(i);
+    if (rocks_pos[i] > 45) check_collision(i);
   }
 
   draw();
