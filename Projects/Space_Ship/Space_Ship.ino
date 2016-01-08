@@ -1,17 +1,17 @@
-#include <SPI.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_PCD8544.h>
 
+bool is_game_end = false;
 int pin_left = 11;
 int pint_right = 12;
-
 int ship_pos = 43;
-
 int rocks_pos[12];
 
 Adafruit_PCD8544 lcd = Adafruit_PCD8544(7, 6, 5, 4, 3);
 
 void setup() {
+  Serial.begin(9600);
+  
   for (int i=0; i<12; i++) rocks_pos[i] = -99;
   
   srand(analogRead(0));
@@ -39,15 +39,40 @@ void loop() {
   if (ship_pos > 81) ship_pos = 81;
 
   for (int i=0; i<12; i++) {
-    if (rocks_pos[i] > 60) rocks_pos[i] = -99;
+    if (rocks_pos[i] >= 52) rocks_pos[i] = -99;
     if (rocks_pos[i] != -99) rocks_pos[i] ++;
+
+    if (rocks_pos[i] > 44) check_collision(i);
   }
 
   draw();
 }
 
+void check_collision(int no) {
+  int r_left = (no * 8) - 4;
+  int r_right = (no * 8) + 4;
+  int s_left = ship_pos - 2;
+  int s_right = ship_pos + 2;
+
+//  if (!is_game_end) {
+//  Serial.print("r_left: ");
+//  Serial.print(r_left);
+//  Serial.print("r_right: ");
+//  Serial.print(r_right);
+//  Serial.print("s_left: ");
+//  Serial.print(s_left);
+//  Serial.print("s_right: ");
+//  Serial.print(s_right);
+//  Serial.println();
+//  }
+
+  if ((s_right > r_left) && (s_left < r_right)) is_game_end = true;
+}
+
 void draw() {
   lcd.clearDisplay();
+
+  if (is_game_end) return;
   
   for (int i=0; i<12; i++) {
     lcd.fillCircle(i*8, rocks_pos[i], 4, BLACK);
@@ -57,4 +82,3 @@ void draw() {
   
   lcd.display();
 }
-
