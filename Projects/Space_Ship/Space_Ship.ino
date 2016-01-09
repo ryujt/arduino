@@ -47,7 +47,7 @@ void loop() {
     int r = rand() % 12;
   
     if (rocks_pos[r] == -99) {
-      if ((rand() % 2) == 0) rocks_pos[r] = -8;
+      if ((rand() % 1) == 0) rocks_pos[r] = -8;
     }
     
       for (int i=0; i<12; i++) {
