@@ -25,26 +25,39 @@ void setup() {
   draw();
 }
 
-void loop() {
-  int r = rand() % 12;
+int score = 0;
+double skip_count = 0;
+double rock_speed = 0.5;
 
-  if (rocks_pos[r] == -99) {
-    if ((rand() % 10) == 0) rocks_pos[r] = -8;
-  }
-  
+void loop() {
   if (digitalRead(pin_left) == LOW) ship_pos++;
   if (digitalRead(pint_right) == LOW) ship_pos--; 
 
   if (ship_pos < 2) ship_pos = 2;
   if (ship_pos > 81) ship_pos = 81;
 
-  for (int i=0; i<12; i++) {
-    if (rocks_pos[i] >= 52) rocks_pos[i] = -99;
-    if (rocks_pos[i] != -99) rocks_pos[i] ++;
+  skip_count = skip_count - rock_speed;
+  
+  if (skip_count < 0) {
+    score++;
+    
+    skip_count = 2.0;
+    rock_speed = rock_speed + 0.002;
 
-    if (rocks_pos[i] > 45) check_collision(i);
+    int r = rand() % 12;
+  
+    if (rocks_pos[r] == -99) {
+      if ((rand() % 2) == 0) rocks_pos[r] = -8;
+    }
+    
+      for (int i=0; i<12; i++) {
+      if (rocks_pos[i] >= 52) rocks_pos[i] = -99;
+      if (rocks_pos[i] != -99) rocks_pos[i] ++;
+  
+      if (rocks_pos[i] > 45) check_collision(i);
+    }
   }
-
+  
   draw();
 }
 
@@ -73,6 +86,10 @@ void draw() {
   lcd.clearDisplay();
 
   if (is_game_end) return;
+
+  lcd.setTextSize(1);
+  lcd.setCursor(0,0);
+  lcd.println(score);
   
   for (int i=0; i<12; i++) {
     lcd.fillCircle(i*8, rocks_pos[i], 4, BLACK);
