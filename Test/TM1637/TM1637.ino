@@ -1,4 +1,3 @@
-#include <Arduino.h>
 #include <TM1637Display.h>
 
 #define CLK 2

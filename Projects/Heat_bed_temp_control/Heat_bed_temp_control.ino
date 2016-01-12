@@ -1,12 +1,12 @@
 #include <TM1637Display.h>
 
-#define CLK 2
-#define DIO 3
+#define CLK 3
+#define DIO 2
 
 int target_temp = 65;
 
 int pin_temp = 0;
-int pin_relay = 6;
+int pin_relay = 4;
 int pin_led = 13;
 
 TM1637Display display(CLK, DIO);
@@ -17,7 +17,8 @@ void setup() {
   pinMode(pin_relay, OUTPUT);
   pinMode(pin_led, OUTPUT);
   
-  display.setBrightness(0x0f);
+  display.setBrightness(0x08);
+//  display.setBrightness(0x0f);
 }
 
 void loop() {
@@ -29,7 +30,7 @@ void loop() {
 
   display.showNumberDec(tempC, true, 4, 0);
 
-  if (tempC > target_temp) {
+  if (tempC < target_temp) {
     digitalWrite(pin_relay, HIGH);
     digitalWrite(pin_led, HIGH);
   } else {
