@@ -9,9 +9,6 @@ void setup()
 {
 //  Serial.begin(9600);
 
-  engine->setOnBeforeUpdate(on_BeforeUpdate);
-  engine->setOnAfterUpdate(on_AfterUpdate);
-
   mainLayer = engine->addLayer();
   mainLayer->addControl(control);
   
@@ -22,12 +19,3 @@ void loop()
 {
   engine->update();
 }
-
-void on_BeforeUpdate(int tick)
-{
-}
-
-void on_AfterUpdate(int tick)
-{
-}
-
