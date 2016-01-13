@@ -7,12 +7,15 @@
 #include <LinkedList.h>
 
 
+class GameEngine;
+class GameLayer;
+
 class GameControlBase
 {
 protected:
 	Adafruit_PCD8544 *_LCD;
-	void *_Engine;
-	void *_Layer;
+	GameEngine *_Engine;
+	GameLayer *_Layer;
 
 	int _ID = 0;
 
@@ -56,7 +59,7 @@ class GameLayer
 {
 protected:
 	Adafruit_PCD8544 *_LCD;
-	void *_Engine;
+	GameEngine *_Engine;
 private:
 	LinkedList<GameControlBase *> _Controls = LinkedList<GameControlBase *>();
 private:

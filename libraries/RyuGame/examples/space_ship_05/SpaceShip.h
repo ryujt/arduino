@@ -80,8 +80,7 @@ public:
                         Missile *missile = new Missile();
                         missile->start(_X, _Y);
 
-                        GameLayer *layer = (GameLayer *) _Layer;
-                        layer->addControl(missile);
+                        _Layer->addControl(missile);
                 }
 
                 if (_X < 4) _X = 4;

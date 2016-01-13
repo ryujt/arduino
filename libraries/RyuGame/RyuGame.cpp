@@ -24,7 +24,7 @@ bool GameControlBase::checkCollisionWith(GameControlBase *control)
 
 GameControlBase *GameControlBase::checkCollision()
 {
-	if (_IsEnabled) return ((GameLayer *) _Layer)->checkCollision(this);
+	if (_IsEnabled) return _Layer->checkCollision(this);
 	else return NULL;
 }
 				

@@ -71,7 +71,6 @@ public:
                 Enemy *enemy = new Enemy();
                 enemy->start();
 
-                GameLayer *layer = (GameLayer *) _Layer;
-                layer->addControl(enemy);
+                _Layer->addControl(enemy);
 	}
 };
