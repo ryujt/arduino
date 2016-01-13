@@ -63,7 +63,7 @@ public:
                         _TickCount = 0;
 
                         if (chance_enemy > 5) chance_enemy--;
-                        if (enemy_speed > 0) enemy_speed = enemy_speed - 5;
+                        if (enemy_speed > 10) enemy_speed = enemy_speed - 5;
                 }
 
                 if ((rand() % chance_enemy) != 0) return;
