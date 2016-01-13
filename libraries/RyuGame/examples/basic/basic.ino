@@ -7,7 +7,7 @@ Control *control = new Control();
 
 void setup() 
 {
-//  Serial.begin(9600);
+  Serial.begin(9600);
 
   mainLayer = engine->addLayer();
   mainLayer->addControl(control);

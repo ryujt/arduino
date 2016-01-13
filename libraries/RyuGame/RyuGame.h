@@ -7,23 +7,39 @@
 #include <LinkedList.h>
 
 
-typedef void (*OnUpdateEvent) (int tick);
-
-
 class GameControlBase
 {
 protected:
 	Adafruit_PCD8544 *_LCD;
 	void *_Engine;
 	void *_Layer;
+
+	int _X = 0;
+	int _Y = 0;
+
+	// Radius of hit area.  
+	// _HitSize is limitation of distance when check collision of two GameControlBase objects.
+	int _HitSize = 0;
+
+	bool _IsEnabled = true;	
+	bool _IsDeleted = false;	
+private:
+	bool checkCollisionWith(GameControlBase *control);
 public:
 	virtual void start() = 0;
 	virtual void update(unsigned long tick) = 0;
 
+	GameControlBase *checkCollision();
+
+	bool getIsEnabled();
+	void setIsEnabled(bool value);
+
+	bool getIsDeleted();
+	void setIsDeleted(bool value);
+
 	friend class GameEngine;
 	friend class GameLayer;
 };
-
 
 class GameLayer
 {
@@ -32,15 +48,19 @@ protected:
 	void *_Engine;
 private:
 	LinkedList<GameControlBase *> _Controls = LinkedList<GameControlBase *>();
+private:
+	GameControlBase *checkCollision(GameControlBase *control);
 public:
-	void addControl(GameControlBase *control);
+	void addControl(GameControlBase *object);
 
 	void start();
 	void update(unsigned long tick);
 
 	friend class GameEngine;
+	friend class GameControlBase;
 };
 
+typedef void (*OnUpdateEvent) (int tick);
 
 class GameEngine
 {

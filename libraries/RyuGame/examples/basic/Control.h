@@ -12,6 +12,6 @@ public:
 
 	void update(unsigned long tick) 
 	{
-    _LCD->fillCircle(10, 10, 5, BLACK);
+    	_LCD->fillCircle(10, 10, 5, BLACK);
 	}
 };
