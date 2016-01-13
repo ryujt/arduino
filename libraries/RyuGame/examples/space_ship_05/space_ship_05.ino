@@ -13,7 +13,7 @@ GameLayer *mainLayer;
 
 void setup() 
 {
-  Serial.begin(9600);
+//  Serial.begin(9600);
 
   pinMode(pint_right, INPUT_PULLUP);
   pinMode(pin_left, INPUT_PULLUP);
@@ -32,6 +32,10 @@ void loop()
   is_right_down = digitalRead(pint_right) == LOW; 
   is_left_down = digitalRead(pin_left) == LOW;
   is_fire_down = digitalRead(pin_fire) == LOW;
+
+//  Serial.println(chance_enemy);
+//  Serial.println(enemy_speed);
+//  Serial.println("");
   
   engine->update();
 }

@@ -48,7 +48,6 @@ public:
                         if (control->getID() == Enemy_ID) {                                
                                 control->setIsDeleted(true);
                                 _IsDeleted = true;
-                                score = score + 100;
                         }
                 }
         }
@@ -74,8 +73,9 @@ public:
 
                 if (_MissileCount < 1000) _MissileCount = _MissileCount + tick;
 
-                if (is_fire_down && (_MissileCount >= 1000)) {
+                if (is_fire_down && (_MissileCount >= 100) && (score >= 100)) {
                         _MissileCount = 0;
+                        score = score - 100;
 
                         Missile *missile = new Missile();
                         missile->start(_X, _Y);

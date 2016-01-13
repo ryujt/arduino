@@ -3,12 +3,6 @@
 #include "Globals.h"
 
 
-// How offent do enemy appear.  Large number get low chance.
-#define chance_enemy 20
-
-#define enemy_speed 100
-
-
 static const unsigned char PROGMEM enemy_image[] =
 { 
         B00011000,
@@ -54,6 +48,7 @@ public:
 class Enemies : public GameControlBase
 {
 private:
+        int _TickCount = 0;
 public:
 	void start() 
 	{
@@ -62,6 +57,15 @@ public:
 
 	void update(unsigned long tick) 
 	{
+                _TickCount = _TickCount + tick;
+
+                if (_TickCount >= 5000) {
+                        _TickCount = 0;
+
+                        if (chance_enemy > 5) chance_enemy--;
+                        if (enemy_speed > 0) enemy_speed = enemy_speed - 5;
+                }
+
                 if ((rand() % chance_enemy) != 0) return;
 
                 Enemy *enemy = new Enemy();
