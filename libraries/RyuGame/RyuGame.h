@@ -14,6 +14,8 @@ protected:
 	void *_Engine;
 	void *_Layer;
 
+	int _ID = 0;
+
 	int _X = 0;
 	int _Y = 0;
 
@@ -30,6 +32,15 @@ public:
 	virtual void update(unsigned long tick) = 0;
 
 	GameControlBase *checkCollision();
+
+	int getID();
+	void setID(int value);
+
+	int getX();
+	void setX(int value);
+
+	int getY();
+	void setY(int value);
 
 	bool getIsEnabled();
 	void setIsEnabled(bool value);

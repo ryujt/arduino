@@ -27,7 +27,37 @@ GameControlBase *GameControlBase::checkCollision()
 	if (_IsEnabled) return ((GameLayer *) _Layer)->checkCollision(this);
 	else return NULL;
 }
-			
+				
+int GameControlBase::getID()
+{
+	return _ID;
+}
+	
+int GameControlBase::getX()
+{
+	return _X;
+}
+
+void GameControlBase::setX(int value)
+{
+	_X = value;
+}
+	
+int GameControlBase::getY()
+{
+	return _Y;
+}
+
+void GameControlBase::setY(int value)
+{
+	_Y = value;
+}
+
+void GameControlBase::setID(int value)
+{
+	_ID = value;
+}
+
 bool GameControlBase::getIsEnabled()
 {
 	return _IsEnabled;
