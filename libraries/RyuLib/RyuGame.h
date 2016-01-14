@@ -17,14 +17,14 @@ protected:
 	GameEngine *_Engine;
 	GameLayer *_Layer;
 
-	int _ID = 0;
+	byte _ID = 0;
 
-	int _X = 0;
-	int _Y = 0;
+	signed char _X = 0;
+	signed char _Y = 0;
 
 	// Radius of hit area.  
 	// _HitSize is limitation of distance when check collision of two GameControlBase objects.
-	int _HitSize = 0;
+	byte _HitSize = 0;
 
 	bool _IsEnabled = true;	
 	bool _IsDeleted = false;	
@@ -80,9 +80,9 @@ protected:
 	void update(unsigned long tick);
 private:	
 	int _PIN = 0;
-	int _Frequency = 0;
-	int _Duration = 0;
-	LinkedList<int> _Notes = LinkedList<int>();
+	short _Frequency = 0;
+	short _Duration = 0;
+	LinkedList<short> _Notes = LinkedList<short>();
 public:
 	AudioTrack(int pin) 
 		: _PIN(pin)

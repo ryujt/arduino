@@ -1,3 +1,7 @@
+#ifndef MUSICAL_NOTES_H
+#define MUSICAL_NOTES_H
+
+
 // Reference:  This list was adapted from the table located here:
 // 		http://www.phy.mtu.edu/~suits/notefreqs.html
 const float  note_C0 = 16.35;  //C0
@@ -100,3 +104,6 @@ const float  note_C8 = 4186.01;  //C8
 const float  note_Db8 = 4434.92;  //C#8/Db8
 const float  note_D8 = 4698.64;  //D8
 const float  note_Eb8 = 4978.03;  //D#8/Eb8
+
+
+#endif // MUSICAL_NOTES_H
