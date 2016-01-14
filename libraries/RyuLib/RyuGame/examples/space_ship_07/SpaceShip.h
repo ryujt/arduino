@@ -67,7 +67,7 @@ public:
 
 class SpaceShip : public GameControlBase
 {
-private:
+private: 
         int _FireInterval = 0;
 
         int _MissileCountTick = 0;
@@ -98,7 +98,7 @@ public:
                 if (is_right_down) _X--;
 
                 // Add missile count on every 5 second.
-                _MissileCountTick = _MissileCountTick + tick;
+                if (_MissileCount < 3) _MissileCountTick = _MissileCountTick + tick;
                 if (_MissileCountTick >= 5000) {
                         if (_MissileCount < 3) _MissileCount++;
                         _MissileCountTick = 0;
