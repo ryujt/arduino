@@ -99,84 +99,86 @@ const float  note_Db8 = 4434.92;  //C#8/Db8
 const float  note_D8 = 4698.64;  //D8
 const float  note_Eb8 = 4978.03;  //D#8/Eb8
 
+int pin = 13;
+
 void setup() {
-	pinMode(0, OUTPUT);
+	pinMode(pin, OUTPUT);
 }
 
 void loop() {
-//	seR2D2(0);
+//	seR2D2(pin);
 //	delay(1000);
 //
-//	seCloseEncounters(0);
+//	seCloseEncounters(pin);
 //	delay(1000);
 //
-//	seAriel(0);
+//	seAriel(pin);
 //	delay(1000);
 //
-//	seLaugh(0);
+//	seLaugh(pin);
 //	delay(1000);
 //
-//	seLaugh2(0);
+//	seLaugh2(pin);
 //	delay(1000);
 //
-//	seSqueak(0);
+//	seSqueak(pin);
 //	delay(1000);
 //
-//	seWaka(0);
+//	seWaka(pin);
 //	delay(1000);
 //
-//	seCatcall(0);
+//	seCatcall(pin);
 //	delay(1000);
 //
-//	seOhhh(0);
+//	seOhhh(pin);
 //	delay(1000);
 //
-//	seUhoh(0);
+//	seUhoh(pin);
 //	delay(1000);
 //
-//	seChang(0);
+//	seChang(pin);
 //	delay(1000);
 //
-//	seCoo(0);
+//	seCoo(pin);
 //	delay(1000);
 //
-//	seOh(0);
+//	seOh(pin);
 //	delay(1000);
 //
-//	sePhone(0);
+//	sePhone(pin);
 //	delay(1000);
 //
-//	seSiren(0);
+//	seSiren(pin);
 //	delay(1000);
 //
-//	seSpace1(0);
+//	seSpace1(pin);
 //	delay(1000);
 //
-//	seSpace2(0);
+//	seSpace2(pin);
 //	delay(1000);
 //
-//	seFanfare(0);
+//	seFanfare(pin);
 //	delay(1000);
 //
-	seAlarm(0);
-	delay(1000);
-//
-//	seTelefone(0);
+//	seAlarm(pin);
 //	delay(1000);
 //
-//	seTonarkade(0);
+//	seTelefone(pin);
 //	delay(1000);
 //
-//	seTonarkade2(0);
+//	seTonarkade(pin);
 //	delay(1000);
 //
-//	seSad(0);
+//	seTonarkade2(pin);
 //	delay(1000);
 //
-//	seVictory(0);
+//	seSad(pin);
 //	delay(1000);
 //
-//	seAssorted(0);
+//	seVictory(pin);
+//	delay(1000);
+//
+//	seAssorted(pin);
 //	delay(1000);
 }
 
