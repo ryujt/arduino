@@ -27,57 +27,7 @@ GameControlBase *GameControlBase::checkCollision()
 	if (_IsEnabled) return _Layer->checkCollision(this);
 	else return NULL;
 }
-				
-int GameControlBase::getID()
-{
-	return _ID;
-}
-	
-int GameControlBase::getX()
-{
-	return _X;
-}
-
-void GameControlBase::setX(int value)
-{
-	_X = value;
-}
-	
-int GameControlBase::getY()
-{
-	return _Y;
-}
-
-void GameControlBase::setY(int value)
-{
-	_Y = value;
-}
-
-void GameControlBase::setID(int value)
-{
-	_ID = value;
-}
-
-bool GameControlBase::getIsEnabled()
-{
-	return _IsEnabled;
-}
-
-void GameControlBase::setIsEnabled(bool value)
-{
-	_IsEnabled = value;
-}
-
-bool GameControlBase::getIsDeleted()
-{
-	return _IsDeleted;
-}
-
-void GameControlBase::setIsDeleted(bool value)
-{
-	_IsDeleted = value;
-}
-
+			
 
 /* class GameLayer */
 
@@ -128,6 +78,51 @@ GameControlBase *GameLayer::checkCollision(GameControlBase *object)
 }
 
 
+/* class AudioTrack */
+	
+void AudioTrack::update(unsigned long tick)
+{
+	if (_Duration <= 0) {		
+		if (_Notes.size() == 0) {
+			noTone(_PIN);
+			return;
+		}
+
+		_Frequency = _Notes.shift();
+		_Duration = _Notes.shift();
+
+		if (_Frequency == 0) noTone(_PIN);
+		else tone(_PIN, _Frequency);
+	}
+
+	_Duration = _Duration - tick;
+}
+	
+void AudioTrack::clear()
+{
+	_Notes.clear();
+
+	_Frequency = 0;
+	_Duration = 0;
+}
+
+void AudioTrack::play(int frequency, int duration)
+{
+	_Notes.add(frequency);
+	_Notes.add(duration);
+}
+	
+void AudioTrack::play(int frequency)
+{
+	tone(_PIN, frequency);
+}
+	
+void AudioTrack::stop()
+{
+	noTone(_PIN);
+}
+
+
 /* class GameEngine */
 
 GameLayer *GameEngine::addLayer()
@@ -175,15 +170,7 @@ void GameEngine::update()
 
 	_LCD.display();
 
+	_AudioTrack.update(term);
+
 	if (_OnAfterUpdate != NULL) _OnAfterUpdate(term);
-}
-
-void GameEngine::setOnBeforeUpdate(OnUpdateEvent event)
-{
-	_OnBeforeUpdate = event;
-}	
-
-void GameEngine::setOnAfterUpdate(OnUpdateEvent event)
-{
-	_OnAfterUpdate = event;
 }

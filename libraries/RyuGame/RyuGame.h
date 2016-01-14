@@ -28,28 +28,28 @@ protected:
 
 	bool _IsEnabled = true;	
 	bool _IsDeleted = false;	
+protected:
+	virtual void start() = 0;
+	virtual void update(unsigned long tick) = 0;
 private:
 	bool checkCollisionWith(GameControlBase *control);
 public:
-	virtual void start() = 0;
-	virtual void update(unsigned long tick) = 0;
-
 	GameControlBase *checkCollision();
 
-	int getID();
-	void setID(int value);
+	int getID() { return _ID; }
+	void setID(int value) { _ID = value; }
 
-	int getX();
-	void setX(int value);
+	int getX() { return _X; }
+	void setX(int value) { _X = value; }
+		
+	int getY() { return _Y; }
+	void setY(int value) { _Y = value; }
 
-	int getY();
-	void setY(int value);
+	bool getIsEnabled() { return _IsEnabled; }
+	void setIsEnabled(bool value) { _IsEnabled = value; }
 
-	bool getIsEnabled();
-	void setIsEnabled(bool value);
-
-	bool getIsDeleted();
-	void setIsDeleted(bool value);
+	bool getIsDeleted() { return _IsDeleted; }
+	void setIsDeleted(bool value) { _IsDeleted = value; }
 
 	friend class GameEngine;
 	friend class GameLayer;
@@ -60,6 +60,9 @@ class GameLayer
 protected:
 	Adafruit_PCD8544 *_LCD;
 	GameEngine *_Engine;
+protected:
+	void start();
+	void update(unsigned long tick);
 private:
 	LinkedList<GameControlBase *> _Controls = LinkedList<GameControlBase *>();
 private:
@@ -67,11 +70,31 @@ private:
 public:
 	void addControl(GameControlBase *object);
 
-	void start();
-	void update(unsigned long tick);
-
 	friend class GameEngine;
 	friend class GameControlBase;
+};
+
+class AudioTrack
+{
+protected:
+	void update(unsigned long tick);
+private:	
+	int _PIN = 0;
+	int _Frequency = 0;
+	int _Duration = 0;
+	LinkedList<int> _Notes = LinkedList<int>();
+public:
+	AudioTrack(int pin) 
+		: _PIN(pin)
+	{}
+
+	void clear();
+
+	void play(int frequency, int duration);
+	void play(int frequency);
+	void stop();
+
+	friend class GameEngine;
 };
 
 typedef void (*OnUpdateEvent) (int tick);
@@ -79,6 +102,7 @@ typedef void (*OnUpdateEvent) (int tick);
 class GameEngine
 {
 private:
+	AudioTrack _AudioTrack;
 	Adafruit_PCD8544 _LCD;
 
 	unsigned long _OldTick;
@@ -88,17 +112,19 @@ private:
 	OnUpdateEvent _OnBeforeUpdate = NULL;
 	OnUpdateEvent _OnAfterUpdate = NULL;
 public:
-	GameEngine(int8_t SCLK, int8_t DIN, int8_t DC, int8_t CS, int8_t RST) 
-		: _LCD(SCLK, DIN, DC, CS, RST)
-		{}
+	GameEngine(int audio, int8_t SCLK, int8_t DIN, int8_t DC, int8_t CS, int8_t RST) 
+		: _AudioTrack(audio), _LCD(SCLK, DIN, DC, CS, RST)
+	{}
 
 	GameLayer *addLayer();
 
 	void start();
 	void update();
 
-	void setOnBeforeUpdate(OnUpdateEvent event);
-	void setOnAfterUpdate(OnUpdateEvent event);
+	AudioTrack *getAudioTrack() { return &_AudioTrack; }
+
+	void setOnBeforeUpdate(OnUpdateEvent event) { _OnBeforeUpdate = event; }	
+	void setOnAfterUpdate(OnUpdateEvent event) { _OnAfterUpdate = event; }
 };
 
 
