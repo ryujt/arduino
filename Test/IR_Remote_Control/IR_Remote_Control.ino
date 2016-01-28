@@ -8,7 +8,7 @@
 #define STAR_KEY   0xFD30CF
 #define SHARP_KEY  0xFD708F
 
-const int pin_ir = 6;
+const int pin_ir = 7;
 
 IRrecv irrecv(pin_ir);
 
@@ -23,7 +23,7 @@ void setup()
 void loop()
 {
   if (irrecv.decode(&results)) {
-    Serial.print(results.value, HEX);
+    Serial.print(results.value);
     Serial.print(": ");
     
     switch(results.value) {

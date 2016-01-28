@@ -1,14 +1,16 @@
 #include "ir_utils.h"
 
+IR ir(7);
+
 void setup()
 {
   Serial.begin(9600);
-  start_ir(7);
+  ir.begin();
 }
 
 void loop()
 {
-  unsigned long result = get_ir_code();
+  unsigned long result = ir.read();
   if (result != 0) {
     Serial.println(result);
   }

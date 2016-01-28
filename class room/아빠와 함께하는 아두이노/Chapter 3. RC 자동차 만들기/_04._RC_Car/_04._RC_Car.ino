@@ -1,67 +1,70 @@
-#include &lt;IRremote.h>
+#include "ir_utils.h"
 
-#define AIA 5
-#define AIB 6
-#define BIA 3
-#define BIB 4
+int a_01 = 3;  
+int a_02 = 4; 
+int b_01 = 5;
+int b_02 = 6;
+
+int speed_a = 255;
+int speed_b = 255;
     
-IRrecv irrecv(7);
+IR ir(7);
 
 void setup() {
-  irrecv.enableIRIn();
+  ir.begin();
 
-  pinMode(AIA, OUTPUT);
-  pinMode(AIB, OUTPUT);
-  pinMode(BIA, OUTPUT);
-  pinMode(BIB, OUTPUT);
+  pinMode(a_01, OUTPUT);
+  pinMode(a_02, OUTPUT);
+  pinMode(b_01, OUTPUT);
+  pinMode(b_02, OUTPUT);
   
   do_stop();  
 }
 
 void loop() {
-  decode_results results;
-  boolean has_result = irrecv.decode(&results);
-  if (has_result) {
-    if (results.value == 16623703) do_stop();
-    if (results.value == 16615543) forward();
-    if (results.value == 16619623) backward();
-    if (results.value == 16591063) left();
-    if (results.value == 16607383) right();
-    irrecv.resume();
-  }
+  unsigned long result = ir.read();
+  if (result == 16623703) do_stop();
+  if (result == 16615543) forward();
+  if (result == 16619623) backward();
+  if (result == 16591063) left();
+  if (result == 16607383) right();
 }
 
-void forward() {
-  digitalWrite(AIA, HIGH);
-  digitalWrite(AIB, LOW);
-  digitalWrite(BIA, HIGH);
-  digitalWrite(BIB, LOW);
+void forward()
+{
+  analogWrite(a_01, speed_a);
+  analogWrite(a_02, 0);
+  analogWrite(b_01, speed_b);
+  analogWrite(b_02, 0);
 }
-
-void backward() {
-  digitalWrite(AIA, LOW);
-  digitalWrite(AIB, HIGH);
-  digitalWrite(BIA, LOW);
-  digitalWrite(BIB, HIGH);
+  
+void backward()
+{
+  analogWrite(a_01, 0);
+  analogWrite(a_02, speed_a);
+  analogWrite(b_01, 0);
+  analogWrite(b_02, speed_b);
 }
-
-void left() {
-  digitalWrite(AIA, HIGH);
-  digitalWrite(AIB, LOW);
-  digitalWrite(BIA, LOW);
-  digitalWrite(BIB, HIGH);
+  
+void left()
+{
+  analogWrite(a_01, speed_a);
+  analogWrite(a_02, 0);
+  analogWrite(b_01, 0);
+  analogWrite(b_02, speed_b);
 }
-
-void right() {
-  digitalWrite(AIA, LOW);
-  digitalWrite(AIB, HIGH);
-  digitalWrite(BIA, HIGH);
-  digitalWrite(BIB, LOW);
+  
+void right()
+{
+  analogWrite(a_01, 0);
+  analogWrite(a_02, speed_a);
+  analogWrite(b_01, speed_b);
+  analogWrite(b_02, 0);
 }
 
 void do_stop() {
-  digitalWrite(AIA, LOW);
-  digitalWrite(AIB, LOW);
-  digitalWrite(BIA, LOW);
-  digitalWrite(BIB, LOW);
+  analogWrite(a_01, 0);
+  analogWrite(a_02, 0);
+  analogWrite(b_01, 0);
+  analogWrite(b_02, 0);
 }
