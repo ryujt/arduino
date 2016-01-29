@@ -10,7 +10,7 @@ Jumper: e30 - f30
 C 104: Vcc - Gnd
 C 104: h17 - h19
 C 222: Vcc - a18
-C 222: c19 - c21
+C 222: d19 - d21
 
 C 100uF: Vcc - j20
 
@@ -18,7 +18,7 @@ R 220K: Vcc - a19
 R  22K: Gnd - j17
 VR 100R: b23 - b25 - d24
 
-Tr 9018: b18 - b19 - b20 (]
+Tr 9018: c18 - c19 - c20 (]
 Tr 9015: g17 - g18 - g19 (]
 Tr 9012: h20 - h21 - h22 (]
 
